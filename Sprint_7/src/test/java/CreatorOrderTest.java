@@ -17,7 +17,6 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 public class CreatorOrderTest {
     private OrderClient orderClient;
     private final Order order;
-    private int track;
 
     public CreatorOrderTest(Order order) {
         this.order = order;
@@ -45,6 +44,6 @@ public class CreatorOrderTest {
         ValidatableResponse createResponse = orderClient.createOrder(order);
         createResponse.assertThat().statusCode(equalTo(201));
         createResponse.assertThat().body("track", notNullValue());
-        track = createResponse.extract().path("track");
+        createResponse.extract().path("track");
     }
 }
